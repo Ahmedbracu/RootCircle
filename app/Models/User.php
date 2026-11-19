@@ -7,24 +7,33 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-	use Notifiable;
+    use Notifiable;
 
-	protected $fillable = [
-		'name',
-		'email',
-		'password',
-	];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'bio',
+        'profile_picture',
+        'location',
+        'gardening_interests',
+    ];
 
-	protected $hidden = [
-		'password',
-		'remember_token',
-	];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-	protected function casts(): array
-	{
-		return [
-			'email_verified_at' => 'datetime',
-			'password' => 'hashed',
-		];
-	}
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password'          => 'hashed',
+        ];
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

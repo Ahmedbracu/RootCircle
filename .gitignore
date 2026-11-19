@@ -13,6 +13,9 @@
 /public/build
 /public/hot
 /public/storage
+/public/post_images/*
+/public/profile_pictures/*
+/public/uploads/*
 /storage/*.key
 /storage/framework/cache/*
 /storage/framework/sessions/*
