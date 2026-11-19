@@ -74,6 +74,12 @@
                         <i class="bi bi-images"></i> Plant Posts
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('collections.*') || request()->routeIs('plants.*') || request()->routeIs('growth-logs.*') ? 'fw-bold' : '' }}"
+                       href="{{ route('collections.index') }}">
+                        <i class="bi bi-collection"></i> My Garden
+                    </a>
+                </li>
                 @if(auth()->user()?->role === 'admin')
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.*') ? 'fw-bold' : '' }}"

@@ -92,7 +92,7 @@
                         </label>
                         <textarea id="gardening_interests" name="gardening_interests" rows="3"
                                   class="form-control @error('gardening_interests') is-invalid @enderror"
-                                  placeholder="e.g. Succulents, Orchids, Vegetable Gardening, Bonsai">{{ old('gardening_interests', $user->gardening_interests) }}</textarea>
+                                  placeholder="e.g. Succulents, Orchids, Vegetable Gardening, Bonsai">{{ old('gardening_interests', is_array($user->gardening_interests) ? implode(', ', $user->gardening_interests) : $user->gardening_interests) }}</textarea>
                         <div class="form-text">Separate interests with commas.</div>
                         @error('gardening_interests') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>

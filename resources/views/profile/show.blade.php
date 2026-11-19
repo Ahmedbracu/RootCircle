@@ -39,9 +39,9 @@
 
                 <!-- Gardening interests -->
                 <h6 class="fw-bold text-rc"><i class="bi bi-flower1 me-1"></i>Gardening Interests</h6>
-                @if($user->gardening_interests)
+                @if($user->gardening_interests && count($user->gardening_interests) > 0)
                     <div class="d-flex flex-wrap gap-2">
-                        @foreach(explode(',', $user->gardening_interests) as $interest)
+                        @foreach($user->gardening_interests as $interest)
                             <span class="badge bg-rc-light text-rc px-3 py-2 rounded-pill">
                                 🌿 {{ trim($interest) }}
                             </span>

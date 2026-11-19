@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PlantCollectionController;
+use App\Http\Controllers\PlantController;
+use App\Http\Controllers\PlantGrowthLogController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +33,7 @@ Route::post('/register',[AuthController::class, 'register']);
 // ── Authenticated routes ──────────────────────────────────
 Route::middleware('auth')->group(function () {
 
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // ── Feature 1: User Profile Management ───────────────
@@ -42,6 +46,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/create',    [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts',          [PostController::class, 'store'])->name('posts.store');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    // ── Feature 4: Personal Plant Collection ─────────────
+    Route::get('/collections',                       [PlantCollectionController::class, 'index'])->name('collections.index');
+    Route::get('/collections/create',                [PlantCollectionController::class, 'create'])->name('collections.create');
+    Route::post('/collections',                      [PlantCollectionController::class, 'store'])->name('collections.store');
+    Route::get('/collections/{collection}',          [PlantCollectionController::class, 'show'])->name('collections.show');
+    Route::get('/collections/{collection}/edit',     [PlantCollectionController::class, 'edit'])->name('collections.edit');
+    Route::put('/collections/{collection}',          [PlantCollectionController::class, 'update'])->name('collections.update');
+    Route::delete('/collections/{collection}',       [PlantCollectionController::class, 'destroy'])->name('collections.destroy');
+
+    // ── Plants (scoped to a collection) ──────────────────
+    Route::get('/collections/{collection}/plants/create', [PlantController::class, 'create'])->name('plants.create');
+    Route::post('/collections/{collection}/plants',       [PlantController::class, 'store'])->name('plants.store');
+    Route::get('/plants/{plant}',                         [PlantController::class, 'show'])->name('plants.show');
+    Route::get('/plants/{plant}/edit',                    [PlantController::class, 'edit'])->name('plants.edit');
+    Route::put('/plants/{plant}',                         [PlantController::class, 'update'])->name('plants.update');
+    Route::delete('/plants/{plant}',                      [PlantController::class, 'destroy'])->name('plants.destroy');
+
+    // ── Feature 3: Plant Growth Tracking ─────────────────
+    Route::post('/plants/{plant}/growth-logs',                  [PlantGrowthLogController::class, 'store'])->name('growth-logs.store');
+    Route::delete('/plants/{plant}/growth-logs/{growthLog}',    [PlantGrowthLogController::class, 'destroy'])->name('growth-logs.destroy');
 
     // ── Feature 20: Admin Dashboard ──────────────────────
     Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->group(function () {
