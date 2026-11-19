@@ -70,6 +70,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('feed.*') ? 'fw-bold' : '' }}"
+                       href="{{ route('feed.index') }}">
+                        <i class="bi bi-rss"></i> My Feed
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('posts.*') ? 'fw-bold' : '' }}"
                        href="{{ route('posts.index') }}">
                         <i class="bi bi-images"></i> Plant Posts
@@ -93,7 +99,13 @@
 
             <ul class="navbar-nav ms-auto align-items-center gap-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('profile.show') }}">
+                    <a class="nav-link {{ request()->routeIs('search.*') ? 'fw-bold' : '' }}"
+                       href="{{ route('search.index') }}" title="Search">
+                        <i class="bi bi-search fs-5"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('profile.show') ? 'fw-bold' : '' }}" href="{{ route('profile.show') }}">
                         @if(auth()->user()->profile_picture)
                             <img src="{{ chr(47) . auth()->user()->profile_picture }}"
                                  class="avatar-sm me-1" alt="avatar">
