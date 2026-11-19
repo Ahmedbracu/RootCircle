@@ -1,73 +1,155 @@
-RootCircle
-A Social Networking and Resource-Sharing Platform for Plant Enthusiasts
-CSE470: Software Engineering Project
-Section: 12
-Faculty: Soumya Swagata Biswas
+# RootCircle
 
-Contributers:
-24101655	Tasik Mohammad Mostafiz
-23301585	Ahmed Abu Bakar
-23201377	Khalid Mumin Chowdhury
-24201456	Zarin Tasnim Sneha
+## A Social Networking and Resource-Sharing Platform for Plant Enthusiasts
 
-Tech Stack
-Framework: Laravel 12.x (PHP 8.2+)
-Architecture: Model-View-Controller (MVC)
-Database: MySQL
-Frontend / Templating: Laravel Blade, Bootstrap 5, Bootstrap Icons
-Image Uploads: Handled directly in public/ directory
+**CSE470: Software Engineering Project**  
+**Section:** 12  
+**Faculty:** Soumya Swagata Biswas
 
-Follow these steps to run RootCircle locally on your computer:
+### Contributors
 
-1. Prerequisites
-Ensure you have the following installed:
-PHP 8.2+ (with pdo_mysql, curl, mbstring, fileinfo extensions enabled)
-Composer (getcomposer.org
-)
-MySQL Server (via MySQL 8.x, XAMPP, or Laragon)
-Git
+| ID | Name |
+|---|---|
+| 24101655 | Tasik Mohammad Mostafiz |
+| 23301585 | Ahmed Abu Bakar |
+| 23201377 | Khalid Mumin Chowdhury |
+| 24201456 | Zarin Tasnim Sneha |
 
-2. Clone the Repository
-Open your terminal (PowerShell, Git Bash, or Command Prompt):
-bash
+---
+
+## Tech Stack
+
+- **Framework:** Laravel 12.x
+- **Backend:** PHP 8.2+
+- **Architecture:** Model-View-Controller (MVC)
+- **Database:** MySQL
+- **Frontend / Templating:** Laravel Blade
+- **UI Framework:** Bootstrap 5
+- **Icons:** Bootstrap Icons
+- **Image Uploads:** Handled directly in the `public/` directory
+
+---
+
+## Installation & Setup
+
+Follow these steps to run **RootCircle** locally on your computer.
+
+### 1. Prerequisites
+
+Make sure the following are installed:
+
+- PHP 8.2+ with the following extensions enabled:
+  - `pdo_mysql`
+  - `curl`
+  - `mbstring`
+  - `fileinfo`
+- Composer
+- MySQL Server through one of the following:
+  - MySQL 8.x
+  - XAMPP
+  - Laragon
+- Git
+
+---
+
+### 2. Clone the Repository
+
+Open your terminal, such as PowerShell, Git Bash, or Command Prompt:
+
+```bash
 git clone https://github.com/Ahmedbracu/RootCircle.git
 cd RootCircle
+```
 
-3. Install PHP Dependencies
-bash
+---
+
+### 3. Install PHP Dependencies
+
+Run:
+
+```bash
 composer install
+```
 
-4. Set Up Environment File (.env)
-Copy .env.example to create your own .env file:
-Windows (PowerShell / CMD):
-powershell
+---
+
+### 4. Set Up the Environment File
+
+Copy `.env.example` and create your own `.env` file.
+
+**Windows PowerShell / CMD:**
+
+```powershell
 copy .env.example .env
-Open .env in VS Code or Notepad and verify your MySQL database credentials:
-env
+```
+
+Open the `.env` file in VS Code or another text editor and configure your MySQL database credentials:
+
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=rootcircle
 DB_USERNAME=root
 DB_PASSWORD=your_mysql_password
+```
 
-5. Generate Application Key
-bash
+Replace `your_mysql_password` with your actual MySQL password.
+
+---
+
+### 5. Generate the Application Key
+
+Run:
+
+```bash
 php artisan key:generate
+```
 
-6. Create the Database & Run Migrations
-Make sure your MySQL server is running, then create the database:
-You can create the database named rootcircle in MySQL Workbench, phpMyAdmin, or terminal:
-sql
+---
+
+### 6. Create the Database & Run Migrations
+
+Make sure your MySQL server is running.
+
+Create a database named `rootcircle` using MySQL Workbench, phpMyAdmin, or the MySQL terminal.
+
+```sql
 CREATE DATABASE rootcircle;
-Run the migrations to create all tables:
-bash
+```
+
+Then run the Laravel migrations:
+
+```bash
 php artisan migrate
+```
 
-7. Start the Local Server
-bash
+This will create the required database tables for the application.
+
+---
+
+### 7. Start the Local Development Server
+
+Run:
+
+```bash
 php artisan serve
+```
 
-Open your browser and visit:
+The application will be available at:
+
+```text
 http://127.0.0.1:8000
-(automatically redirects to login)
+```
+
+Open the address in your browser.
+
+The application automatically redirects to the login page.
+
+---
+
+## Login
+
+After successfully setting up the application, users can register for an account and log in to access the RootCircle platform.
+
+---
