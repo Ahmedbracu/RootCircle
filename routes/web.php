@@ -13,6 +13,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\CareScheduleController;
 use App\Http\Controllers\PropagationController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\FeedController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +42,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // ── Feature 9: Search & Discovery ────────────────────
+    Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+
+    // ── Feature 12: Personalized News Feed ───────────────
+    Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');
 
     // ── Feature 1: User Profile Management ───────────────
     Route::get('/profile',      [ProfileController::class, 'show'])->name('profile.show');

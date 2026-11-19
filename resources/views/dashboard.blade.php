@@ -79,6 +79,27 @@
         </div>
     </div>
 
+    {{-- ── Feature 9 & 12 cards ────────────────────────────── --}}
+    <div class="col-md-6">
+        <div class="card h-100 p-4 text-center d-flex flex-column"
+             style="background: linear-gradient(135deg,#2d6a4f,#52b788); color:#fff;">
+            <div style="font-size:2.5rem;">🔍</div>
+            <h5 class="mt-2 fw-bold">Search & Discover</h5>
+            <p class="small flex-grow-1 opacity-75">Find users, plants, and community posts by keyword.</p>
+            <a href="{{ route('search.index') }}" class="btn btn-light fw-bold">Search Now</a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 p-4 text-center d-flex flex-column"
+             style="background: linear-gradient(135deg,#40916c,#74c69d); color:#fff;">
+            <div style="font-size:2.5rem;">📰</div>
+            <h5 class="mt-2 fw-bold">My Feed</h5>
+            <p class="small flex-grow-1 opacity-75">See recent posts from people you follow.</p>
+            <a href="{{ route('feed.index') }}" class="btn btn-light fw-bold">Open Feed</a>
+        </div>
+    </div>
+
     {{-- ── Recent plants preview ──────────────────────────── --}}
     @if($recentPlants->isNotEmpty())
     <div class="col-12">
