@@ -8,6 +8,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlantCollectionController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\PlantGrowthLogController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -67,6 +70,15 @@ Route::middleware('auth')->group(function () {
     // ── Feature 3: Plant Growth Tracking ─────────────────
     Route::post('/plants/{plant}/growth-logs',                  [PlantGrowthLogController::class, 'store'])->name('growth-logs.store');
     Route::delete('/plants/{plant}/growth-logs/{growthLog}',    [PlantGrowthLogController::class, 'destroy'])->name('growth-logs.destroy');
+
+    // ── Feature 3: Community Interaction ─────────────────
+    Route::post('/posts/{post}/like',              [LikeController::class, 'toggle'])->name('posts.like');
+    Route::post('/posts/{post}/comments',          [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}',           [CommentController::class, 'destroy'])->name('comments.destroy');
+
+    // ── Feature: Follow & Unfollow ────────────────────────
+    Route::post('/users/{user}/follow',            [FollowController::class, 'toggle'])->name('users.follow');
+    Route::get('/users/{user}/profile',            [ProfileController::class, 'showUser'])->name('users.profile');
 
     // ── Feature 20: Admin Dashboard ──────────────────────
     Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->group(function () {
