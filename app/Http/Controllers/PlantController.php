@@ -55,10 +55,12 @@ class PlantController extends Controller
             ->with('success', 'Plant added to your collection! 🌱');
     }
 
-    // ── Show a single plant + its growth log ──────────────────
+    // ── Show a single plant + its growth log, care & propagations ──
     public function show(Plant $plant): View
     {
         $this->authorisePlant($plant);
+
+        $plant->load(['careSchedules', 'propagations']);
 
         $growthLogs = $plant->growthLogs()
             ->orderBy('logged_at', 'desc')

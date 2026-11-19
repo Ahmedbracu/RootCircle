@@ -11,6 +11,8 @@ use App\Http\Controllers\PlantGrowthLogController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\CareScheduleController;
+use App\Http\Controllers\PropagationController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -70,6 +72,17 @@ Route::middleware('auth')->group(function () {
     // ── Feature 3: Plant Growth Tracking ─────────────────
     Route::post('/plants/{plant}/growth-logs',                  [PlantGrowthLogController::class, 'store'])->name('growth-logs.store');
     Route::delete('/plants/{plant}/growth-logs/{growthLog}',    [PlantGrowthLogController::class, 'destroy'])->name('growth-logs.destroy');
+
+    // ── Feature 5: Plant Care Management ────────────────
+    Route::post('/plants/{plant}/care-schedules',                              [CareScheduleController::class, 'store'])->name('care-schedules.store');
+    Route::put('/plants/{plant}/care-schedules/{careSchedule}',                [CareScheduleController::class, 'update'])->name('care-schedules.update');
+    Route::patch('/plants/{plant}/care-schedules/{careSchedule}/complete',     [CareScheduleController::class, 'markComplete'])->name('care-schedules.complete');
+    Route::delete('/plants/{plant}/care-schedules/{careSchedule}',             [CareScheduleController::class, 'destroy'])->name('care-schedules.destroy');
+
+    // ── Feature 16: Plant Propagation Tracker ────────────
+    Route::post('/plants/{plant}/propagations',                    [PropagationController::class, 'store'])->name('propagations.store');
+    Route::put('/plants/{plant}/propagations/{propagation}',       [PropagationController::class, 'update'])->name('propagations.update');
+    Route::delete('/plants/{plant}/propagations/{propagation}',    [PropagationController::class, 'destroy'])->name('propagations.destroy');
 
     // ── Feature 3: Community Interaction ─────────────────
     Route::post('/posts/{post}/like',              [LikeController::class, 'toggle'])->name('posts.like');
