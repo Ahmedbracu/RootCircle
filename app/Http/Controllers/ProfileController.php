@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,11 @@ class ProfileController extends Controller
     public function show(): View
     {
         $user = Auth::user();
+        return view('profile.show', compact('user'));
+    }
+
+    public function showUser(User $user): View
+    {
         return view('profile.show', compact('user'));
     }
 
